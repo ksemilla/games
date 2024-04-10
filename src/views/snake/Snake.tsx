@@ -83,7 +83,7 @@ function generateBoxes(n: number, foodPos: number[]): Box[][] {
 }
 
 export function SnakePage() {
-  const n = 100
+  const n = 50
   const [food, setFood] = useState([
     Math.floor(Math.random() * n),
     Math.floor(Math.random() * n),
