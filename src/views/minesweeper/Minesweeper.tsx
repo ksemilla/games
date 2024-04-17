@@ -1,3 +1,5 @@
+import { Board } from "../../utils/Board"
+
 export function MinesweeperPage() {
-  return <div>minesweeper</div>
+  return <Board />
 }

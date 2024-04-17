@@ -31,7 +31,7 @@ function useInterval(callback: () => void, delay: number | null) {
 
 function RenderBoxes(props: { boxes: Box[][] }) {
   return (
-    <div style={{ border: "1px solid gray", display: "inline-block" }}>
+    <div style={{ border: "2px solid black", display: "inline-block" }}>
       {props.boxes.map((line, i) => (
         <div
           key={i}
@@ -46,11 +46,10 @@ function RenderBoxes(props: { boxes: Box[][] }) {
               <div
                 key={j}
                 style={{
-                  padding: "0",
-                  margin: "0",
+                  padding: "1px",
+                  margin: "1px",
                   width: "10px",
                   height: "10px",
-                  border: `1px solid gray`,
                   backgroundColor: `${box.color}`,
                 }}
               ></div>
