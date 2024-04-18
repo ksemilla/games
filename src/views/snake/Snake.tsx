@@ -29,9 +29,15 @@ function useInterval(callback: () => void, delay: number | null) {
   }, [delay])
 }
 
-function RenderBoxes(props: { boxes: Box[][] }) {
+function Board(props: { boxes: Box[][]; boxSize: string }) {
   return (
-    <div style={{ border: "2px solid black", display: "inline-block" }}>
+    <div
+      style={{
+        border: "2px solid black",
+        display: "inline-block",
+        position: "relative",
+      }}
+    >
       {props.boxes.map((line, i) => (
         <div
           key={i}
@@ -48,8 +54,8 @@ function RenderBoxes(props: { boxes: Box[][] }) {
                 style={{
                   padding: "1px",
                   margin: "1px",
-                  width: "10px",
-                  height: "10px",
+                  width: props.boxSize,
+                  height: props.boxSize,
                   backgroundColor: `${box.color}`,
                 }}
               ></div>
@@ -319,7 +325,7 @@ export function SnakePage() {
   return (
     <div>
       <p>{score}</p>
-      <RenderBoxes boxes={boxes} />
+      <Board boxes={boxes} boxSize="7px" />
       <div>
         <button
           onClick={() => {
