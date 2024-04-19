@@ -93,6 +93,7 @@ export function SnakePage() {
     Math.floor(Math.random() * n),
     Math.floor(Math.random() * n),
   ])
+  const [showOverlay, setShowOverlay] = useState(true)
   const [score, setScore] = useState(0)
   const [boxes, setBoxes] = useState<Box[][]>(generateBoxes(n, food))
   const [snake, setSnake] = useState<SnakePixel[]>([
@@ -325,7 +326,36 @@ export function SnakePage() {
   return (
     <div>
       <p>{score}</p>
-      <Board boxes={boxes} boxSize="7px" />
+      <div
+        style={{
+          border: "2px solid red",
+          display: "inline-block",
+          position: "relative",
+        }}
+      >
+        <Board boxes={boxes} boxSize="7px" />
+        {showOverlay && (
+          <div
+            style={{
+              position: "absolute",
+              top: "0",
+              bottom: "0",
+              right: "0",
+              left: "0",
+              backgroundColor: "gray",
+              zIndex: 10,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: 0.7,
+            }}
+          >
+            <div>
+              <button onClick={() => setShowOverlay(false)}>Start Game</button>
+            </div>
+          </div>
+        )}
+      </div>
       <div>
         <button
           onClick={() => {
