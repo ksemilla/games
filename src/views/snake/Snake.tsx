@@ -112,7 +112,7 @@ export function SnakePage() {
   ])
   const [direction, setDirection] = useState<"l" | "r" | "d" | "u">("r")
 
-  const [delay, setDelay] = useState<number | null>(100)
+  const [delay, setDelay] = useState<number | null>(null)
 
   useInterval(() => {
     if (
@@ -126,6 +126,7 @@ export function SnakePage() {
     ) {
       setDelay(null)
       resetAll()
+      setShowOverlay(true)
     } else {
       if (food[0] === snake[0].pos[0] && food[1] === snake[0].pos[1]) {
         const length = snake.length
@@ -351,7 +352,14 @@ export function SnakePage() {
             }}
           >
             <div>
-              <button onClick={() => setShowOverlay(false)}>Start Game</button>
+              <button
+                onClick={() => {
+                  setShowOverlay(false)
+                  setDelay(100)
+                }}
+              >
+                Start Game
+              </button>
             </div>
           </div>
         )}
