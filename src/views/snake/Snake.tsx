@@ -124,6 +124,11 @@ export function SnakePage() {
         food[0] !== snake[0].pos[0] &&
         food[1] !== snake[0].pos[1])
     ) {
+      console.log(
+        "lol",
+        boxes[snake[0].pos[0]][snake[0].pos[1]].color,
+        direction
+      )
       setDelay(null)
       resetAll()
       setShowOverlay(true)
@@ -248,15 +253,18 @@ export function SnakePage() {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowDown" && direction !== "u") {
-        setDirection("d")
-      } else if (event.key === "ArrowUp" && direction !== "d") {
-        setDirection("u")
-      } else if (event.key === "ArrowRight" && direction !== "l") {
-        setDirection("r")
-      } else if (event.key === "ArrowLeft" && direction !== "r") {
-        setDirection("l")
-      }
+      const timeoutId = setTimeout(() => {
+        if (event.key === "ArrowDown" && direction !== "u") {
+          setDirection("d")
+        } else if (event.key === "ArrowUp" && direction !== "d") {
+          setDirection("u")
+        } else if (event.key === "ArrowRight" && direction !== "l") {
+          setDirection("r")
+        } else if (event.key === "ArrowLeft" && direction !== "r") {
+          setDirection("l")
+        }
+      }, 0)
+      return () => clearTimeout(timeoutId)
     }
 
     window.addEventListener("keydown", handleKeyDown)
